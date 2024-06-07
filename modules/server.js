@@ -14,7 +14,7 @@
 //web frame for node.js
 const express = require('express');
 //manages logoset data
-const legoData = require('./legoSets');
+const legoData = require('./modules/legoSets');
 const app = express();
 const port = 3000;
 
