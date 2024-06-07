@@ -14,10 +14,14 @@
 //web frame for node.js
 const express = require('express');
 //manages logoset data
-const legoData = require('./modules/legoSets');
-
+const legoData = require('./legoSets');
 const app = express();
 const port = 3000;
+
+
+
+app.use(express.static('public'));
+
 
 // URL message 
 app.get('/', (req, res) => { // defines the root for URL
