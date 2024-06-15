@@ -1,0 +1,91 @@
+<!-- /********************************************************************************
+* WEB322 – Assignment 02
+*
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+*
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+*
+* Name: _____DIBA_MAKKI____ Student ID: _____144420189____ Date: ___MAY_31,_2024___
+*
+* Published URL: web-322-assignmnet2-20r5j4fh4-dibas-projects-b8c945af.vercel.app
+
+********************************************************************************/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Collection</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-base-100">
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-xl" href="/">Lego Collection</a> 
+            </div>
+            <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+                    <li><a href="./about.html">About</a></li>
+                    <li tabindex="0">
+
+                        <a>
+                            Theme
+                            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </a>
+                        <ul class="p-2 bg-base-100">
+                            <li><a href="/lego/sets?theme=technic">Technic</a></li>
+                            <li><a href="/lego/sets?theme=city">City</a></li>
+                            <li><a href="/lego/sets?theme=star-wars">Star Wars</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container mx-auto">
+        <section class="hero bg-base-200">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Welcome to the Lego Collection</h1>
+                    <p class="py-6">Explore the vast world of Lego sets. Click below to see all available sets.</p>
+                    <a class="btn btn-primary" href="/lego/sets">Explore Sets</a>
+                </div>
+            </div>
+        </section>
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 py-6">
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="./Lego0.jpg" alt="Lego Set 1"></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Set Name 1</h2>
+                    <p>...................</p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-primary" href="/lego/sets/001-1">View Set</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="./Lego1.jpg" alt="Lego Set 2"></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Set Name 2</h2>
+                    <p>...................</p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-primary" href="/lego/sets/002-1">View Set</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-base-100 shadow-xl">
+                <figure><img src="./Lego2.jpg" alt="Lego Set 3" ></figure>
+                <div class="card-body">
+                    <h2 class="card-title">Set Name 3</h2>
+                    <p>...................</p>
+                    <div class="card-actions justify-end">
+                        <a class="btn btn-primary" href="/lego/sets/003-1">View Set</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
