@@ -11,84 +11,41 @@
 * Published URL: web-322-assignmnet2-20r5j4fh4-dibas-projects-b8c945af.vercel.app
 
 ********************************************************************************/
-
-const setData = require("../data/setData");
-const themeData = require("../data/themeData");
+const setData = require("../data/setData.json");
+const themeData = require("../data/themeData.json");
 
 let sets = [];
 
-
-//loads the data and combination sets with their themes
 function initialize() {
     return new Promise((resolve, reject) => {
         try {
-            console.log("Starting initialization");
-            console.log(`Loaded ${setData.length} sets and ${themeData.length} themes`);
-
-            setData.forEach(set => {
+            sets = setData.map(set => {
                 const theme = themeData.find(theme => theme.id === set.theme_id);
-                if (theme) {
-                    sets.push({
-                        ...set,
-                        theme: theme.name
-                    });
-                } else {
-                    console.log("No matching theme found for set", set);
-                }
+                return {
+                    ...set,
+                    theme: theme ? theme.name : "Unknown"
+                };
             });
-
-            console.log("Initialization complete with sets count:", sets.length);
-            if (sets.length > 0) {
-                resolve();
-            } else {
-                reject("No sets were initialized.");
-            }
+            resolve();
         } catch (error) {
-            console.error("Initialization failed:", error);
-            reject("Initialization failed: " + error.message);
+            reject(error);
         }
     });
 }
 
-
-
-//Returns all avaibale sets
 function getAllSets() {
-    return new Promise((resolve, reject) => {
-        if (sets.length > 0) {
-            resolve(sets);
-        } else {
-            reject("No sets available.");
-        }
-    });
+    return sets;
 }
 
-
-
-//save and specific set by its number 
 function getSetByNum(setNum) {
-    return new Promise((resolve, reject) => {
-        const set = sets.find(s => s.set_num === setNum);
-        if (set) {
-            resolve(set);
-        } else {
-            reject("Set not found with number: " + setNum);
-        }
-    });
+    return sets.find(set => set.set_num === setNum);
 }
 
-
-
-//it finds all sets whose theme name includes the given substring 
-function getSetsByTheme(themeSubstring) {
-    return new Promise((resolve, reject) => {
-        const matchedSets = sets.filter(s => s.theme.toLowerCase().includes(themeSubstring.toLowerCase()));
-        if (matchedSets.length > 0) {
-            resolve(matchedSets);
-        } else {
-            reject("No sets found with theme containing: " + themeSubstring);
-        }
-    });
+function getSetsByTheme(theme) {
+    const lowercasedTheme = theme.toLowerCase();
+    return sets.filter(set => set.theme.toLowerCase().includes(lowercasedTheme));
 }
 
 module.exports = { initialize, getAllSets, getSetByNum, getSetsByTheme };
+
+

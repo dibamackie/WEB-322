@@ -1,25 +1,11 @@
 {
-  "name": "lego-sets-server",
-  "version": "1.0.0",
-  "description": "An Express server to manage LEGO sets",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "echo \"No tests specified\" && exit 0"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "keywords": [
-    "express",
-    "api",
-    "lego",
-    "server"
-  ],
-  "author": "Diba ",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1",
-    "cors": "^2.8.5"
+"scripts": {
+  "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
+},
+
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "daisyui": "^4.12.2",
+    "tailwindcss": "^3.4.4"
   }
 }
