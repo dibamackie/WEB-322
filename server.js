@@ -3,16 +3,16 @@ const path = require('path');
 const legoData = require('./modules/legoSets');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/home.html'));
+  res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/about.html'));
+  res.sendFile(path.join(__dirname, 'views', 'about.html'));
 });
 
 app.get('/lego/sets', async (req, res) => {
@@ -40,7 +40,7 @@ app.get('/lego/sets/:setNum', async (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'views','404.html'));
 });
 
 legoData.initialize().then(() => {
