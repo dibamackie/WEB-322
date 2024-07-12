@@ -5,10 +5,14 @@ const legoData = require('./modules/legoSets');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '/views'));
+
+
+app.use(express.static(path.join(__dirname, '/public')));
+
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
 app.get('/about', (req, res) => {
