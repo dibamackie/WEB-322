@@ -509,7 +509,11 @@ html {
 }
 
 * {
-  scrollbar-color: currentColor transparent;
+  scrollbar-color: color-mix(in oklch, currentColor 35%, transparent) transparent;
+}
+
+*:hover {
+  scrollbar-color: color-mix(in oklch, currentColor 60%, transparent) transparent;
 }
 
 :root {
@@ -695,6 +699,12 @@ html {
     background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
     --tw-text-opacity: 1;
     color: var(--fallback-nc,oklch(var(--nc)/var(--tw-text-opacity)));
+  }
+
+  .table tr.hover:hover,
+  .table tr.hover:nth-child(even):hover {
+    --tw-bg-opacity: 1;
+    background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
   }
 }
 
@@ -1007,6 +1017,39 @@ html {
   align-items: center;
 }
 
+.table {
+  position: relative;
+  width: 100%;
+  border-radius: var(--rounded-box, 1rem);
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.table :where(.table-pin-rows thead tr) {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.table :where(.table-pin-rows tfoot tr) {
+  position: sticky;
+  bottom: 0px;
+  z-index: 1;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+.table :where(.table-pin-cols tr th) {
+  position: sticky;
+  left: 0px;
+  right: 0px;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
 .btm-nav > *:where(.active) {
   border-top-width: 2px;
   --tw-bg-opacity: 1;
@@ -1198,6 +1241,10 @@ html {
   }
 }
 
+.join > :where(*:not(:first-child)):is(.btn) {
+  margin-inline-start: calc(var(--border-btn) * -1);
+}
+
 .link:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -1343,6 +1390,18 @@ html {
   }
 }
 
+.table:where([dir="rtl"], [dir="rtl"] *) {
+  text-align: right;
+}
+
+.table :where(th, td) {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  vertical-align: middle;
+}
+
 .table tr.active,
   .table tr.active:nth-child(even),
   .table-zebra tbody tr:nth-child(even) {
@@ -1355,6 +1414,26 @@ html {
     .table-zebra-zebra tbody tr:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity)));
+}
+
+.table :where(thead tr, tbody tr:not(:last-child), tbody tr:first-child:last-child) {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-bottom-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+}
+
+.table :where(thead, tfoot) {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  color: var(--fallback-bc,oklch(var(--bc)/0.6));
+}
+
+.table :where(tfoot) {
+  border-top-width: 1px;
+  --tw-border-opacity: 1;
+  border-top-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
 }
 
 @keyframes toast-pop {
@@ -1414,6 +1493,14 @@ html {
   margin-bottom: 0.75rem;
 }
 
+.join.join-vertical > :where(*:not(:first-child)):is(.btn) {
+  margin-top: calc(var(--border-btn) * -1);
+}
+
+.join.join-horizontal > :where(*:not(:first-child)):is(.btn) {
+  margin-inline-start: calc(var(--border-btn) * -1);
+}
+
 .menu-horizontal > li:not(.menu-title) > details > ul {
   margin-inline-start: 0px;
   margin-top: 1rem;
@@ -1438,6 +1525,10 @@ html {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.table {
+  display: table;
 }
 
 .grid {

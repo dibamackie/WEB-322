@@ -3,20 +3,24 @@ const path = require('path');
 const legoData = require('./modules/legoSets');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
+
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 
 app.use(express.static(path.join(__dirname, '/public')));
 
 
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'home.html'));
+  res.render('home'); 
 });
 
+
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'about.html'));
+  res.render('about');
 });
 
 app.get('/lego/sets', async (req, res) => {
@@ -24,28 +28,27 @@ app.get('/lego/sets', async (req, res) => {
     const { theme } = req.query;
     if (theme) {
       const sets = await legoData.getSetsByTheme(theme);
-      res.json(sets);
+      res.render('sets', { sets });
     } else {
       const sets = await legoData.getAllSets();
-      res.json(sets);
+      res.render('sets', { sets });
     }
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).render('404', { message: error.message });
   }
 });
 
 app.get('/lego/sets/:setNum', async (req, res) => {
   try {
     const set = await legoData.getSetByNum(req.params.setNum);
-    res.json(set);
+    res.render('set', { set });
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).render('404', { message: error.message });
   }
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'views','404.html'));
-});
+  res.status(404).render('404', { message: "Page not found" })});
 
 legoData.initialize().then(() => {
   app.listen(PORT, () => {
