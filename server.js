@@ -38,14 +38,17 @@ app.get('/lego/sets', async (req, res) => {
   }
 });
 
+
 app.get('/lego/sets/:setNum', async (req, res) => {
   try {
     const set = await legoData.getSetByNum(req.params.setNum);
+    console.log(set); // Log the set object to check its properties
     res.render('set', { set });
   } catch (error) {
     res.status(404).render('404', { message: error.message });
   }
 });
+
 
 app.use((req, res) => {
   res.status(404).render('404', { message: "Page not found" })});
