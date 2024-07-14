@@ -3,21 +3,19 @@ const path = require('path');
 const legoData = require('./modules/legoSets');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
-
+// Set EJS as templating engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-
+// Serve static files
 app.use(express.static(path.join(__dirname, '/public')));
 
-
-
+// Define routes
 app.get('/', (req, res) => {
-  res.render('home'); 
+  res.render('home');
 });
-
 
 app.get('/about', (req, res) => {
   res.render('about');
@@ -26,33 +24,36 @@ app.get('/about', (req, res) => {
 app.get('/lego/sets', async (req, res) => {
   try {
     const { theme } = req.query;
+    let sets;
     if (theme) {
-      const sets = await legoData.getSetsByTheme(theme);
-      res.render('sets', { sets });
+      sets = await legoData.getSetsByTheme(theme);
     } else {
-      const sets = await legoData.getAllSets();
-      res.render('sets', { sets });
+      sets = legoData.getAllSets();
     }
+    res.render('sets', { sets });
   } catch (error) {
     res.status(404).render('404', { message: error.message });
   }
 });
 
-
 app.get('/lego/sets/:setNum', async (req, res) => {
   try {
-    const set = await legoData.getSetByNum(req.params.setNum);
-    console.log(set); // Log the set object to check its properties
+    const set = legoData.getSetByNum(req.params.setNum);
+    if (!set) {
+      throw new Error('Set not found');
+    }
     res.render('set', { set });
   } catch (error) {
     res.status(404).render('404', { message: error.message });
   }
 });
 
-
+// Handle 404
 app.use((req, res) => {
-  res.status(404).render('404', { message: "Page not found" })});
+  res.status(404).render('404', { message: "Page not found" });
+});
 
+// Initialize data and start server
 legoData.initialize().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
