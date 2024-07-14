@@ -8,8 +8,11 @@
         "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
     },
     "dependencies": {
+        "body-parser": "^1.20.2",
         "ejs": "^3.1.10",
-        "express": "^4.19.2"
+        "express": "^4.19.2",
+        "path": "^0.12.7",
+        "sequelize": "^6.37.3"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.13",
