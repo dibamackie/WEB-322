@@ -1,3 +1,16 @@
+/********************************************************************************
+* WEB322 – Assignment 05
+*
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+*
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+*
+* Name: ___DIBA_MAKKI____ Student ID: __144420189__ Date: __JULY_27,2024__
+*
+* Published URL:  https://web-322-nbwnytp0o-dibas-projects-b8c945af.vercel.
+
+********************************************************************************/
 require('dotenv').config();
 const Sequelize = require('sequelize');
 
