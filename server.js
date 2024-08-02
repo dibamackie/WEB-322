@@ -8,7 +8,7 @@
 *
 * Name: ___DIBA_MAKKI____ Student ID: __144420189__ Date: __JULY_27,2024__
 *
-* Published URL:  https://web-322-nbwnytp0o-dibas-projects-b8c945af.vercel.
+* Published URL:  https://web-322-nbwnytp0o-dibas-projects-b8c945af.vercel.app 
 
 ********************************************************************************/
 require('dotenv').config();
@@ -17,7 +17,7 @@ const path = require('path');
 const legoData = require('./modules/legoSets'); // Import your data module
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
@@ -84,6 +84,17 @@ app.post('/lego/addSet', async (req, res) => {
   } catch (error) {
     console.error('Failed to add new set:', error);
     res.status(500).render('500', { message: `I'm sorry, but we have encountered the following error: ${error.message}` });
+  }
+});
+
+
+app.post('/lego/deleteSet/:setNum', async (req, res) => {
+  try {
+    await legoData.deleteSet(req.params.setNum);
+    res.redirect('/lego/sets'); // Redirect back to the sets page after deletion
+  } catch (error) {
+    console.error('Failed to delete set:', error);
+    res.status(500).render('500', { message: error.message });
   }
 });
 
