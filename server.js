@@ -17,7 +17,7 @@ const path = require('path');
 const legoData = require('./modules/legoSets'); // Import your data module
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
