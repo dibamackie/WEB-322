@@ -8,6 +8,7 @@
         "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
     },
     "dependencies": {
+        "auth-service": "^1.0.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.20.2",
         "client-sessions": "^0.8.0",
