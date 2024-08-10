@@ -20,14 +20,18 @@
             </div>
             <div class="bg-white shadow-xl rounded p-4">
                 <h2 class="text-xl font-bold">Set Details</h2>
-                <p><strong>Theme:</strong> <a class="bg-black-500 text-white py-2 px-4 rounded" href="/lego/sets?theme=<%= set.theme %>"><%= set.theme %></a></p>
+                <p><strong>Theme:</strong> <a class=" text-black py-2 px-4 rounded" href="/lego/sets?theme=<%= set.theme %>"><%= set.theme %></a></p>
                 <p><strong>Year:</strong> <%= set.year %></p>
                 <p><strong>Number of Parts:</strong> <%= set.num_parts %></p>
                 <div class="mt-4 text-right">
-                    <a class="bg-blue-500 text-white py-2 px-4 rounded" href="/lego/sets">Back to Sets</a>
+                    <a class=" text-black py-2 px-4 rounded" href="/lego/sets">Back to Sets</a>
+                    <% if(session.user){ %>
+                        <!-- Edit button -->
+                        <a href="/lego/editSet/<%= set.set_num %>" class="text-black  py-2 px-4 rounded">Edit Set</a>
+                    <% } %>
                     <!-- Delete form -->
                     <form action="/lego/deleteSet/<%= set.set_num %>" method="POST" style="display: inline;">
-                        <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this set?');">Delete Set</button>
+                        <button type="submit" class=" text-black py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete this set?');">Delete Set</button>
                     </form>
                 </div>
             </div>

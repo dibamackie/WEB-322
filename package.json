@@ -3,14 +3,18 @@
     "version": "1.0.0",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js",
+        "start": " node server.js",
+        "dev": "node --watch server.js",
         "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
     },
     "dependencies": {
+        "bcryptjs": "^2.4.3",
         "body-parser": "^1.20.2",
+        "client-sessions": "^0.8.0",
         "dotenv": "^16.4.5",
         "ejs": "^3.1.10",
         "express": "^4.19.2",
+        "mongoose": "^8.5.2",
         "path": "^0.12.7",
         "pg": "^8.12.0",
         "pg-hstore": "^2.3.4",
