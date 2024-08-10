@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Collection - User History</title>
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <%- include('partials/navbar', { page: '/userHistory' }) %>
+    </header>
+
+    <main class="container mx-auto">
+        <section class="hero bg-base-200">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold mb-2"><%= session.user.userName %></h1>
+                    <p class="py-6">User History: <%= session.user.email %></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-3xl mx-auto py-6">
+            <div class="card bg-base-100 shadow-xl p-6 mb-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Login History</h2>
+                <table class="min-w-full table-auto border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="py-2 px-4 border-b text-left">Login Date</th>
+                            <th class="py-2 px-4 border-b text-left">Login Time</th>
+                            <th class="py-2 px-4 border-b text-left">Client Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% session.user.loginHistory.forEach((loginAttempt) => { %>
+                            <tr class="hover:bg-gray-100">
+                                <td class="py-2 px-4 border-b"><%= new Date(loginAttempt.dateTime).toLocaleDateString() %></td>
+                                <td class="py-2 px-4 border-b"><%= new Date(loginAttempt.dateTime).toLocaleTimeString() %></td>
+                                <td class="py-2 px-4 border-b"><%= loginAttempt.userAgent %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="/server.js"></script>
+</body>
+</html>
